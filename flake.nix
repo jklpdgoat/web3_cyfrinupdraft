@@ -32,18 +32,16 @@
             rust-analyzer
             cargo-binstall
 
-            solc
-
             bun
             nodejs
 
             # asdf-vm
           ];
 
-          shellHook = ''
+          # shellHook = ''
             # alias ls=eza
             # alias find=fd
-          '';
+          # '';
         };
       }
     );
