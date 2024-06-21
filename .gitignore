@@ -39,3 +39,4 @@ Thumbs.db
 # Direnv specific ones
 .direnv
 .envrc
+.env
