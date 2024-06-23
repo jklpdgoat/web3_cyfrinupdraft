@@ -11,6 +11,6 @@ contract FundMeTestIntegration is Test {
         DeployFundMe deploy = new DeployFundMe();
 
         DeployFundMe deployFundMe = new DeployFundMe();
-        fundMe = deployFundMe.run();
+        FundMe fundMe = deployFundMe.run();
     }
 }
