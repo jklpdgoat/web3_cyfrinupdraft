@@ -7,3 +7,6 @@
 [submodule "intermediate/foundry-fundamentals/foundry-fund-me/lib/foundry-devops"]
 	path = intermediate/foundry-fundamentals/foundry-fund-me/lib/foundry-devops
 	url = https://github.com/Cyfrin/foundry-devops
+[submodule "intermediate/foundry-fundamentals/smart-contract-lottery/lib/forge-std"]
+	path = intermediate/foundry-fundamentals/smart-contract-lottery/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
