@@ -1,13 +1,15 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
+import {VRFConsumerBaseV2Plus} from "@chainlink/contracts/src/v0.8/vrf/dev/VRFConsumerBaseV2Plus.sol";
+
 /**
  * @title A sample Raffle contract
  * @notice This contract is for creating a sample raffle
  * @dev Implementations Chainlink VRFv2.5
  */
 
-contract Raffle {
+contract Raffle is VRFConsumerBaseV2Plus {
     /* Errors */
     error Raffle__SendMoreToEnterRaffle();
 
@@ -49,6 +51,27 @@ contract Raffle {
         if ((block.timestamp - s_lastTimeStamp) < i_interval) {
             revert();
         }
+
+        // Get our random number 2.5
+        // 1. Request RNG
+        // 2. Get RNG
+        requestId = s_vrfCoordinator.requestRandomWords(
+            VRFV2PlusClient.RandomWordsRequest({
+                keyHash: s_keyHash,
+                subId: s_subscriptionId,
+                requestConfirmations: requestConfirmations,
+                callbackGasLimit: callbackGasLimit,
+                numWords: numWords,
+                extraArgs: VRFV2PlusClient._argsToBytes(
+                    // Set nativepayment to true to pay for VRF requests with Sepolia ETH instead
+                    VRFV2PlusClient.ExtraAngsV1({nativepayment: false})
+                )
+            })            
+        );
+
+        // s_rollers[requestId] = roller;
+        // s_results[rolller] = ROLL_IN_PROGRESS;
+        // emit DiceRolled(requestId, roller);
     }
 
     function getEntranceFee() external view returns (uint256) {
